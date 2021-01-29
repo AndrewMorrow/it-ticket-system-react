@@ -7,6 +7,7 @@ import {
     SET_CURRENT,
     CLEAR_CURRENT,
     UPDATE_LOG,
+    SEARCH_LOGS,
 } from "./types";
 
 // same as below without embeding a function inside
@@ -37,10 +38,31 @@ export const getLogs = () => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: LOGS_ERROR,
-            payload: error.response.data,
+            payload: error.response.statusText,
         });
     }
 };
+
+// Search Logs from server
+export const searchLogs = (text) => async (dispatch) => {
+    try {
+        setLoading();
+
+        const res = await fetch(`/logs?q=${text}`);
+        const data = await res.json();
+
+        dispatch({
+            type: SEARCH_LOGS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: LOGS_ERROR,
+            payload: error.response.statusText,
+        });
+    }
+};
+
 // Add new log
 export const addLog = (log) => async (dispatch) => {
     try {
@@ -62,7 +84,7 @@ export const addLog = (log) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: LOGS_ERROR,
-            payload: error.response.data,
+            payload: error.response.statusText,
         });
     }
 };
@@ -83,7 +105,7 @@ export const deleteLog = (id) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: LOGS_ERROR,
-            payload: error.response.data,
+            payload: error.response.statusText,
         });
     }
 };
@@ -109,7 +131,7 @@ export const updateLog = (log) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: LOGS_ERROR,
-            payload: error.response.data,
+            payload: error.response.statusText,
         });
     }
 };
