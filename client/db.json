@@ -29,11 +29,11 @@
       "date": "2019-05-31T19:57:35.544Z"
     },
     {
-      "message": "New log test 1",
+      "id": 5,
+      "message": "New log test 45",
       "attention": true,
-      "tech": "John Doe",
-      "date": "2021-01-28T21:34:55.161Z",
-      "id": 5
+      "tech": "Sam Smith",
+      "date": "2021-01-29T19:25:32.953Z"
     }
   ],
   "techs": [
